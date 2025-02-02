@@ -10,6 +10,7 @@ import { NullableType } from '../../common/type/nullable.type';
 import { PageOptionsDto } from 'src/common/dto/page-options.dto';
 import { PageDto } from 'src/common/dto/page.dto';
 import { PageMetaDto } from 'src/common/dto/page-meta.dto';
+import { RatingGiftDto } from './dto/rating-gift.dto';
 
 @Injectable()
 export class GiftService {
@@ -46,6 +47,29 @@ export class GiftService {
     gift.count_rating = createGiftDto.count_rating;
     gift.count_review = createGiftDto.count_review;
     return await this.giftRepository.save(gift);
+  }
+
+  async createRedeem(id: number): Promise<Gift> {
+    const giftOld = await this.giftRepository.findOneBy({ id });
+    if (giftOld!.stock >= 1) {
+      const giftNew = giftOld;
+      giftOld!.stock = giftOld!.stock - 1;
+      return await this.giftRepository.save(giftNew!);
+    } else {
+      throw new Error('Stock not ready');
+    }
+  }
+
+  async createRating(id: number, ratingGiftDto: RatingGiftDto): Promise<Gift> {
+    const giftOld = await this.giftRepository.findOneBy({ id });
+    if (ratingGiftDto.rating >= 1) {
+      const giftNew = giftOld;
+      giftNew!.count_rating =
+        (giftOld!.count_rating + ratingGiftDto.rating) / 2;
+      return await this.giftRepository.save(giftNew!);
+    } else {
+      throw new Error('Stock not ready');
+    }
   }
 
   async update(id: number, updateGiftDto: UpdateGiftDto): Promise<Gift> {

@@ -21,6 +21,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { NullableType } from 'src/common/type/nullable.type';
 import { PageOptionsDto } from 'src/common/dto/page-options.dto';
 import { PageDto } from 'src/common/dto/page.dto';
+import { RatingGiftDto } from './dto/rating-gift.dto';
 
 @Controller('gift')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -43,6 +44,18 @@ export class GiftController {
   @UseGuards(AuthGuard('jwt'))
   create(@Body() createGiftDto: CreateGiftDto) {
     return this.giftService.create(createGiftDto);
+  }
+
+  @Post(':id/redeem')
+  @UseGuards(AuthGuard('jwt'))
+  createRedeem(@Param('id') id: string) {
+    return this.giftService.createRedeem(+id);
+  }
+
+  @Post(':id/rating')
+  @UseGuards(AuthGuard('jwt'))
+  createRating(@Param('id') id: string, @Body() ratingGiftDto: RatingGiftDto) {
+    return this.giftService.createRating(+id, ratingGiftDto);
   }
 
   @Put(':id')
