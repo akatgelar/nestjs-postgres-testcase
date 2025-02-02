@@ -20,12 +20,10 @@ export class GiftService {
 
   async findAll(pageOptionsDto: PageOptionsDto): Promise<PageDto<GiftDto>> {
     const queryBuilder = this.giftRepository.createQueryBuilder('gift');
-    // console.log(pageOptionsDto);
     queryBuilder
       .skip(pageOptionsDto.skip)
       .take(pageOptionsDto.per_page)
       .orderBy('gift.' + pageOptionsDto.sort_column, pageOptionsDto.sort);
-    console.log(queryBuilder.getQuery());
 
     const itemCount = await queryBuilder.getCount();
     const { entities } = await queryBuilder.getRawAndEntities();
