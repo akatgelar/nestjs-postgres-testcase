@@ -20,13 +20,11 @@ async function bootstrap() {
 
   // swagger
   const options = new DocumentBuilder()
-    .setTitle('Your API Title')
+    .setTitle('Nestjs Postgres Testcase')
     .setDescription('Your API description')
     .setVersion('1.0')
+    .addServer('http://194.233.69.244:2050/', 'Staging')
     .addServer('http://localhost:3000/', 'Local environment')
-    .addServer('https://staging.yourapi.com/', 'Staging')
-    .addServer('https://production.yourapi.com/', 'Production')
-    .addTag('Your API Tag')
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('', app, document);
