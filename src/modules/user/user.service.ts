@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { NullableType } from '../utils/nullable.type';
+import { NullableType } from '../../utils/nullable.type';
 import { User } from './entities/user.entity';
 
 @Injectable()
