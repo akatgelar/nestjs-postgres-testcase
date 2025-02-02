@@ -4,7 +4,7 @@ import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
-import { ResponseInterceptor } from './utils/response.interceptor';
+import { ResponseInterceptor } from './common/interceptor/response.interceptor';
 
 const configService = new ConfigService();
 
