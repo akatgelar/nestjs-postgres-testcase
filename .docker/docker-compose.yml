@@ -1,0 +1,10 @@
+services:
+  web:
+    # build: .
+    image: ghcr.io/akatgelar/nestjs-postgres-testcase:latest
+    container_name: 'nestjs-postgres-testcase'
+    env_file:
+      - .env
+    ports:
+      - "2050:3000"
+    restart: always
