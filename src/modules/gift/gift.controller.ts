@@ -29,13 +29,13 @@ export class GiftController {
   constructor(private readonly giftService: GiftService) {}
 
   @Get()
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(AuthGuard('jwt'))
   findAll(@Query() pageOptionsDto: PageOptionsDto): Promise<PageDto<GiftDto>> {
     return this.giftService.findAll(pageOptionsDto);
   }
 
   @Get(':id')
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(AuthGuard('jwt'))
   findOne(@Param('id') id: string): Promise<NullableType<Gift>> {
     return this.giftService.findOne(+id);
   }
