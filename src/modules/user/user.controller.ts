@@ -13,7 +13,7 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
-import { NullableType } from 'src/utils/nullable.type';
+import { NullableType } from 'src/common/type/nullable.type';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('user')
